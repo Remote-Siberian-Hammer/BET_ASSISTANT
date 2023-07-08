@@ -21,4 +21,6 @@ use App\Http\Controllers\Api\UserRequestController;
 
 Route::prefix('user')->group(function () {
     Route::post('create', [UserRequestController::class, 'create']);
+    Route::get('show/by/id/{user_id}', [UserRequestController::class, 'showById']);
+    Route::get('show/by/email/{user_email}', [UserRequestController::class, 'showByEmail']);
 });

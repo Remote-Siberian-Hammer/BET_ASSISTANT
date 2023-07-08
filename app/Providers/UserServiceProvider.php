@@ -13,7 +13,7 @@ class UserServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Сервис создания нового аккаунта
+        // Сервис с аккаунта
         $this->app->bind('App\Domain\Service\UserService', function ($app) {
             return new UserService();
         });

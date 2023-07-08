@@ -7,6 +7,8 @@ use App\Http\Resources\UserRequestResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\DTO\User\CreateUserDTO;
+use App\DTO\User\SearchUserByIdDTO;
+use App\DTO\User\SearchUserByEmailDTO;
 use App\Domain\Service\UserService;
 use Illuminate\Database\QueryException;
 
@@ -22,18 +24,19 @@ class UserRequestController extends Controller
     /**
      * Create a newly created resource in storage.
     */
-    public function create(Request $request)
+    public function create(Request $request, UserService $service)
     {
         try
         {
-            $dto = CreateUserDTO::AutoMap($request);
             return new UserRequestResource(
-                $this->service->CreateUserService($dto)
+                $service->CreateUserService(
+                    CreateUserDTO::AutoMap($request)
+                )
             );
         }
         catch(QueryException $e)
         {
-            return $e->getMessage();
+            throw new \Exception($e->getMessage());
         }
         
     }
@@ -41,17 +44,38 @@ class UserRequestController extends Controller
     /**
      * ShowById the specified resource.
     */
-    public function showById(User $user)
+    public function showById(int $user_id, UserService $service)
     {
-        //
+        $action = $service->ShowUserByIdService(
+            SearchUserByIdDTO::AutoMap($user_id)
+        );
+        if ($action)
+        {
+            return new UserRequestResource($action);
+        }
+        else
+        {
+            throw new \Exception('Данных нет!');
+        }
     }
 
     /**
      * ShowByEmail the specified resource.
     */
-    public function showByEmail(User $user)
+    public function showByEmail(string $user_email, UserService $service)
     {
-        //
+        $action = $service->ShowUserByEmailService(
+            SearchUserByEmailDTO::AutoMap($user_email)
+        );
+        if ($action)
+        {
+            return $action;
+            // return new UserRequestResource($action);
+        }
+        else
+        {
+            throw new \Exception('Данных нет!');
+        }
     }
 
     /**

@@ -20,7 +20,6 @@ class UserRequestResource extends JsonResource
             'LastName' => $this->LastName,
             'Email' => $this->Email,
             'Phone' => $this->Phone,
-            'Password' => $this->Password,
             'CreatedAt' => $this->created_at,
         );
     }
