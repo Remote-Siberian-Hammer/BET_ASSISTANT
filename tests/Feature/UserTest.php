@@ -9,6 +9,9 @@ use App\DTO\User\SearchUserByIdDTO;
 use App\DTO\User\SearchUserByEmailDTO;
 use App\Domain\Service\UserService;
 use App\DTO\Mail\SendCreateUserDTO;
+use App\DTO\Mail\SendResetToPasswordUserDTO;
+use App\DTO\User\ResetToPasswordUserDTO;
+use Illuminate\Support\Str;
 
 class UserTest extends TestCase
 {
@@ -154,5 +157,65 @@ class UserTest extends TestCase
         $this->assertEquals(rtrim($user['LastName']), "Мохов");
         $this->assertEquals($user['Email'], "howeda1586@nasskar.com");
         $this->assertEquals($user['Phone'], null);
+    }
+
+    /**
+     * A basic feature test reset_to_password.
+     */
+    public function test_reset_to_password(): void
+    {
+        $dtoCreateUser = new CreateUserDTO();
+        $dtoCreateUser->FirstName = "Игорь";
+        $dtoCreateUser->LastName = "Мохов";
+        $dtoCreateUser->Email = "howeda1586@nasskar.com";
+        $dtoCreateUser->Phone = null;
+        $dtoCreateUser->Password = "babka123";
+
+        // Проверка CreateUserDTO
+        $this->assertEquals($dtoCreateUser->FirstName, "Игорь");
+        $this->assertEquals($dtoCreateUser->LastName, "Мохов");
+        $this->assertEquals($dtoCreateUser->Email, "howeda1586@nasskar.com");
+        $this->assertEquals($dtoCreateUser->Phone, null);
+
+        // Проверка SendCreateUserDTO
+        $dtoSendCreateUser = new SendCreateUserDTO();
+        $dtoSendCreateUser->FirstName = "Игорь";
+        $dtoSendCreateUser->Email = "howeda1586@nasskar.com";
+        $dtoSendCreateUser->Password = "babka123";
+
+        // Вызов сервиса UserService
+        $userService = new UserService();
+        $user = $userService->CreateUserService($dtoCreateUser, $dtoSendCreateUser);
+
+        // Проверка CreateUserService
+        $this->assertNotNull($user);
+        $this->assertEquals($user->FirstName, "Игорь");
+        $this->assertEquals($user->LastName, "Мохов");
+        $this->assertEquals($user->Email, "howeda1586@nasskar.com");
+        $this->assertEquals($user->Phone, null);
+
+        $user_email = json_decode(collect($user), true)['Email'];
+
+        $dtoResetToPasswordUser = new ResetToPasswordUserDTO();
+        $dtoResetToPasswordUser->Email = $user_email;
+
+        // Проверка SearchUserByIdDTO
+        $this->assertEquals($dtoResetToPasswordUser->Email, $user_email);
+
+        $dtoSendResetToPasswordUser = new SendResetToPasswordUserDTO();
+        $dtoSendResetToPasswordUser->Email = $user_email;
+        $dtoSendResetToPasswordUser->Password = null;
+
+        // Проверка SendResetToPasswordUserDTO
+        $this->assertEquals($dtoSendResetToPasswordUser->Email, $user_email);
+        $this->assertEquals($dtoSendResetToPasswordUser->Password, null);
+
+        // Вызов сервиса UserService
+        $userService = new UserService();
+        $user = $userService->ResetToPasswordUserService($dtoResetToPasswordUser, $dtoSendResetToPasswordUser);
+        
+        // Проверка CreateUserService
+        $this->assertNotNull($user);
+        $this->assertEquals($user->Email, "howeda1586@nasskar.com");
     }
 }
