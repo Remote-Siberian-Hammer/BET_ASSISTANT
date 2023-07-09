@@ -8,7 +8,7 @@ use App\DTO\User\CreateUserDTO;
 use App\DTO\User\SearchUserByIdDTO;
 use App\DTO\User\SearchUserByEmailDTO;
 use App\Domain\Service\UserService;
-
+use App\DTO\Mail\SendCreateUserDTO;
 
 class UserTest extends TestCase
 {
@@ -30,9 +30,15 @@ class UserTest extends TestCase
         $this->assertEquals($dtoCreateUser->LastName, "Мохов");
         $this->assertEquals($dtoCreateUser->Email, "howeda1586@nasskar.com");
         $this->assertEquals($dtoCreateUser->Phone, null);
-        $this->assertEquals($dtoCreateUser->Password, "babka123");
+
+        // Проверка SendCreateUserDTO
+        $dtoSendCreateUser = new SendCreateUserDTO();
+        $dtoSendCreateUser->FirstName = "Игорь";
+        $dtoSendCreateUser->Email = "howeda1586@nasskar.com";
+        $dtoSendCreateUser->Password = "babka123";
+
         $userService = new UserService();
-        $user = $userService->CreateUserService($dtoCreateUser);
+        $user = $userService->CreateUserService($dtoCreateUser, $dtoSendCreateUser);
 
         // Проверка CreateUserService
         $this->assertNotNull($user);
@@ -40,7 +46,6 @@ class UserTest extends TestCase
         $this->assertEquals($user->LastName, "Мохов");
         $this->assertEquals($user->Email, "howeda1586@nasskar.com");
         $this->assertEquals($user->Phone, null);
-        $this->assertEquals($user->Password, "babka123");
     }
 
     /**
@@ -60,11 +65,15 @@ class UserTest extends TestCase
         $this->assertEquals($dtoCreateUser->LastName, "Мохов");
         $this->assertEquals($dtoCreateUser->Email, "howeda1586@nasskar.com");
         $this->assertEquals($dtoCreateUser->Phone, null);
-        $this->assertEquals($dtoCreateUser->Password, "babka123");
+        // Проверка SendCreateUserDTO
+        $dtoSendCreateUser = new SendCreateUserDTO();
+        $dtoSendCreateUser->FirstName = "Игорь";
+        $dtoSendCreateUser->Email = "howeda1586@nasskar.com";
+        $dtoSendCreateUser->Password = "babka123";
 
         // Вызов сервиса UserService
         $userService = new UserService();
-        $user = $userService->CreateUserService($dtoCreateUser);
+        $user = $userService->CreateUserService($dtoCreateUser, $dtoSendCreateUser);
 
         // Проверка CreateUserService
         $this->assertNotNull($user);
@@ -72,7 +81,6 @@ class UserTest extends TestCase
         $this->assertEquals($user->LastName, "Мохов");
         $this->assertEquals($user->Email, "howeda1586@nasskar.com");
         $this->assertEquals($user->Phone, null);
-        $this->assertEquals($user->Password, "babka123");
 
         $user_id = json_decode(collect($user), true)['id'];
 
@@ -110,11 +118,16 @@ class UserTest extends TestCase
         $this->assertEquals($dtoCreateUser->LastName, "Мохов");
         $this->assertEquals($dtoCreateUser->Email, "howeda1586@nasskar.com");
         $this->assertEquals($dtoCreateUser->Phone, null);
-        $this->assertEquals($dtoCreateUser->Password, "babka123");
+
+        // Проверка SendCreateUserDTO
+        $dtoSendCreateUser = new SendCreateUserDTO();
+        $dtoSendCreateUser->FirstName = "Игорь";
+        $dtoSendCreateUser->Email = "howeda1586@nasskar.com";
+        $dtoSendCreateUser->Password = "babka123";
 
         // Вызов сервиса UserService
         $userService = new UserService();
-        $user = $userService->CreateUserService($dtoCreateUser);
+        $user = $userService->CreateUserService($dtoCreateUser, $dtoSendCreateUser);
 
         // Проверка CreateUserService
         $this->assertNotNull($user);
@@ -122,7 +135,6 @@ class UserTest extends TestCase
         $this->assertEquals($user->LastName, "Мохов");
         $this->assertEquals($user->Email, "howeda1586@nasskar.com");
         $this->assertEquals($user->Phone, null);
-        $this->assertEquals($user->Password, "babka123");
 
         $user_email = json_decode(collect($user), true)['Email'];
 
