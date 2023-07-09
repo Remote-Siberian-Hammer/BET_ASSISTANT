@@ -10,6 +10,8 @@ use App\DTO\User\SearchUserByIdDTO;
 use App\DTO\User\SearchUserByEmailDTO;
 use App\Domain\Service\UserService;
 use App\DTO\Mail\SendCreateUserDTO;
+use App\DTO\Mail\SendResetToPasswordUserDTO;
+use App\DTO\User\ResetToPasswordUserDTO;
 use Illuminate\Database\QueryException;
 
 
@@ -82,9 +84,21 @@ class UserRequestController extends Controller
     /**
      * ResetToPassword the specified resource in storage.
     */
-    public function resetToPassword(Request $request)
+    public function resetToPassword(Request $request, UserService $service)
     {
-        //
+        try
+        {
+            return new UserRequestResource(
+                $service->ResetToPasswordUserService(
+                    ResetToPasswordUserDTO::AutoMap($request),
+                    SendResetToPasswordUserDTO::AutoMap($request)
+                )
+            );
+        } 
+        catch(QueryException $e)
+        {
+            throw new \Exception($e->getMessage());
+        }
     }
 
     /**

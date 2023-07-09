@@ -5,6 +5,7 @@ use App\DTO\User\CreateUserDTO;
 use App\DTO\User\SearchUserByIdDTO;
 use App\Domain\IRepository\IUserRepository;
 use App\DTO\User\SearchUserByEmailDTO;
+use App\DTO\User\ResetToPasswordUserDTO;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -34,5 +35,14 @@ final class UserRepository implements IUserRepository
             ->latest()
             ->get();
         return $model;
+    }
+
+    public static function ResetToPasswordUser(ResetToPasswordUserDTO $context, string $newPassword)
+    {
+        $model = User::where('Email', $context->Email)->first();
+        $user = User::find($model->id);
+        $user->Password = Hash::make($newPassword);
+        $user->save();
+        return $user;
     }
 }

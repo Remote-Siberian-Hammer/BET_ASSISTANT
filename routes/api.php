@@ -23,4 +23,5 @@ Route::prefix('user')->group(function () {
     Route::post('create', [UserRequestController::class, 'create']);
     Route::get('show/by/id/{user_id}', [UserRequestController::class, 'showById']);
     Route::get('show/by/email/{user_email}', [UserRequestController::class, 'showByEmail']);
+    Route::post('reset/to/password', [UserRequestController::class, 'resetToPassword']);
 });

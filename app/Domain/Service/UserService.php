@@ -6,9 +6,13 @@ use App\Domain\IService\IUserService;
 use App\DTO\User\CreateUserDTO;
 use App\DTO\User\SearchUserByIdDTO;
 use App\DTO\User\SearchUserByEmailDTO;
+use App\DTO\User\ResetToPasswordUserDTO;
 use App\DTO\Mail\SendCreateUserDTO;
+use App\DTO\Mail\SendResetToPasswordUserDTO;
 use App\Jobs\SendCreateUserMailJob;
+use App\Jobs\SendResetToPasswordUserMailJob;
 use ErrorException;
+use Illuminate\Support\Str;
 
 class UserService implements IUserService
 {
@@ -48,5 +52,15 @@ class UserService implements IUserService
     public function ShowUserByEmailService(SearchUserByEmailDTO $context)
     {
         return $this->repository->ShowUserByEmail($context);
+    }
+
+    public function ResetToPasswordUserService(ResetToPasswordUserDTO $context, SendResetToPasswordUserDTO $emailContext)
+    {
+        $newPassword = Str::random(10);
+        // Подмена пароля, он изначально null
+        $emailContext->Password = $newPassword;
+        $repository = $this->repository->ResetToPasswordUser($context, $newPassword);
+        $repository ? dispatch(new SendResetToPasswordUserMailJob($emailContext)) : throw new ErrorException("Такой пользователь не существует!");
+        return $repository;
     }
 }
