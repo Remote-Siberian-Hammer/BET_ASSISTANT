@@ -10,6 +10,7 @@ use App\DTO\User\SearchUserByEmailDTO;
 use App\Domain\Service\UserService;
 use App\DTO\Mail\SendCreateUserDTO;
 use App\DTO\Mail\SendResetToPasswordUserDTO;
+use App\DTO\User\AuthUserDTO;
 use App\DTO\User\ResetToPasswordUserDTO;
 use Illuminate\Support\Str;
 
@@ -217,5 +218,62 @@ class UserTest extends TestCase
         // Проверка CreateUserService
         $this->assertNotNull($user);
         $this->assertEquals($user->Email, "howeda1586@nasskar.com");
+    }
+
+    /**
+     * A basic feature test auth.
+     */
+    public function test_auth(): void
+    {
+        $dtoCreateUser = new CreateUserDTO();
+        $dtoCreateUser->FirstName = "Игорь";
+        $dtoCreateUser->LastName = "Мохов";
+        $dtoCreateUser->Email = "howeda1586@nasskar.com";
+        $dtoCreateUser->Phone = null;
+        $dtoCreateUser->Password = "babka123";
+
+        // Проверка CreateUserDTO
+        $this->assertEquals($dtoCreateUser->FirstName, "Игорь");
+        $this->assertEquals($dtoCreateUser->LastName, "Мохов");
+        $this->assertEquals($dtoCreateUser->Email, "howeda1586@nasskar.com");
+        $this->assertEquals($dtoCreateUser->Phone, null);
+
+        // Проверка SendCreateUserDTO
+        $dtoSendCreateUser = new SendCreateUserDTO();
+        $dtoSendCreateUser->FirstName = "Игорь";
+        $dtoSendCreateUser->Email = "howeda1586@nasskar.com";
+        $dtoSendCreateUser->Password = "babka123";
+
+        $userService = new UserService();
+        $user = $userService->CreateUserService($dtoCreateUser, $dtoSendCreateUser);
+
+        // Проверка CreateUserService
+        $this->assertNotNull($user);
+        $this->assertEquals($user->FirstName, "Игорь");
+        $this->assertEquals($user->LastName, "Мохов");
+        $this->assertEquals($user->Email, "howeda1586@nasskar.com");
+        $this->assertEquals($user->Phone, null);
+
+        $dtoAuthUser = new AuthUserDTO();
+        $dtoAuthUser->Email = "howeda1586@nasskar.com";
+        $dtoAuthUser->Password = "babka123";
+
+        // Проверка AuthUserDTO
+        $this->assertEquals($dtoAuthUser->Email, "howeda1586@nasskar.com");
+        $this->assertEquals($dtoAuthUser->Password, "babka123");
+
+        $dtoSearchUserByEmail = new SearchUserByEmailDTO();
+        $dtoSearchUserByEmail->Email = "howeda1586@nasskar.com";
+
+        // Проверка SearchUserByEmailDTO
+        $this->assertEquals($dtoSearchUserByEmail->Email, "howeda1586@nasskar.com");
+
+        $userService = new UserService();
+        $user = $userService->AuthUserService($dtoAuthUser, $dtoSearchUserByEmail);
+
+        // Проверка CreateUserService
+        $this->assertNotNull($user);
+        $this->assertEquals(key_exists('bearer_token', $user), true);
+        $this->assertEquals(strlen($user['bearer_token']) > 0, true);
     }
 }

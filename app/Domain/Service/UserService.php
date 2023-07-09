@@ -72,7 +72,7 @@ class UserService implements IUserService
         $user = $this->repository->ShowUserByEmail($emailContext);
         if (Hash::check($context->Password, json_decode($user[0], true)["Password"]))
         {
-            return ["berer_token" => $this->repository->Auth($context)];
+            return ["bearer_token" => $this->repository->Auth($context)];
         }
         else
         {
