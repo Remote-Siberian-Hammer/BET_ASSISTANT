@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserRequestResource;
-use App\Models\User;
 use Illuminate\Http\Request;
 use App\DTO\User\CreateUserDTO;
 use App\DTO\User\SearchUserByIdDTO;
 use App\DTO\User\SearchUserByEmailDTO;
 use App\Domain\Service\UserService;
+use App\DTO\Mail\SendCreateUserDTO;
 use Illuminate\Database\QueryException;
 
 
@@ -30,7 +30,8 @@ class UserRequestController extends Controller
         {
             return new UserRequestResource(
                 $service->CreateUserService(
-                    CreateUserDTO::AutoMap($request)
+                    CreateUserDTO::AutoMap($request),
+                    SendCreateUserDTO::AutoMap($request),
                 )
             );
         }

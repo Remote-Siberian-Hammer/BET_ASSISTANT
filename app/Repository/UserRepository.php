@@ -6,6 +6,7 @@ use App\DTO\User\SearchUserByIdDTO;
 use App\Domain\IRepository\IUserRepository;
 use App\DTO\User\SearchUserByEmailDTO;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 final class UserRepository implements IUserRepository
 {
@@ -16,7 +17,7 @@ final class UserRepository implements IUserRepository
         $model->LastName = $context->LastName;
         $model->Email = $context->Email;
         $model->Phone = $context->Phone;
-        $model->Password = $context->Password;
+        $model->Password = Hash::make($context->Password);
         $model->save();
         return $model;
     }
