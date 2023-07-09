@@ -11,6 +11,8 @@ use App\DTO\User\SearchUserByEmailDTO;
 use App\Domain\Service\UserService;
 use App\DTO\Mail\SendCreateUserDTO;
 use App\DTO\Mail\SendResetToPasswordUserDTO;
+use App\DTO\User\AuthUserDTO;
+use App\DTO\User\LogoutUserDTO;
 use App\DTO\User\ResetToPasswordUserDTO;
 use Illuminate\Database\QueryException;
 
@@ -28,6 +30,11 @@ class UserRequestController extends Controller
     */
     public function create(Request $request, UserService $service)
     {
+        $user =  $service->ShowUserByEmailService(SearchUserByEmailDTO::AutoMap($request->Email));
+        if ($user)
+        {
+            throw new \ErrorException('Такой пользователь существует!');
+        }
         try
         {
             return new UserRequestResource(
@@ -41,7 +48,6 @@ class UserRequestController extends Controller
         {
             throw new \Exception($e->getMessage());
         }
-        
     }
 
     /**
@@ -104,23 +110,28 @@ class UserRequestController extends Controller
     /**
      * Auth the specified resource in storage.
     */
-    public function auth(Request $request)
+    public function auth(Request $request, UserService $service)
     {
-        //
+        return $service->AuthUserService(
+            AuthUserDTO::AutoMap($request),
+            SearchUserByEmailDTO::AutoMap($request->Email)
+        );
     }
 
     /**
      * Logout the specified resource in storage.
     */
-    public function logout(Request $request)
+    public function logout(int $user_id, UserService $service)
     {
-        //
+        return $service->LogoutUserService(
+            LogoutUserDTO::AutoMap($user_id)
+        );
     }
 
     /**
      * UpdateAuthPassword the specified resource in storage.
     */
-    public function updateAuthPassword(Request $request)
+    public function updateToPassword(Request $request)
     {
         //
     }

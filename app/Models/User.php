@@ -44,4 +44,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    static function createBearerTocken($user)
+    {
+        $user->tokens()->delete();
+        return $user->createToken('user_token')->plainTextToken;
+    }
+
+    static function deleteBearerTocken($user)
+    {
+        return $user->tokens()->delete();
+    }
 }

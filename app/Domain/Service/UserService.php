@@ -9,9 +9,12 @@ use App\DTO\User\SearchUserByEmailDTO;
 use App\DTO\User\ResetToPasswordUserDTO;
 use App\DTO\Mail\SendCreateUserDTO;
 use App\DTO\Mail\SendResetToPasswordUserDTO;
+use App\DTO\User\AuthUserDTO;
+use App\DTO\User\LogoutUserDTO;
 use App\Jobs\SendCreateUserMailJob;
 use App\Jobs\SendResetToPasswordUserMailJob;
 use ErrorException;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UserService implements IUserService
@@ -62,5 +65,24 @@ class UserService implements IUserService
         $repository = $this->repository->ResetToPasswordUser($context, $newPassword);
         $repository ? dispatch(new SendResetToPasswordUserMailJob($emailContext)) : throw new ErrorException("Такой пользователь не существует!");
         return $repository;
+    }
+
+    public function AuthUserService(AuthUserDTO $context, SearchUserByEmailDTO $emailContext)
+    {
+        $user = $this->repository->ShowUserByEmail($emailContext);
+        if (Hash::check($context->Password, json_decode($user[0], true)["Password"]))
+        {
+            return ["berer_token" => $this->repository->Auth($context)];
+        }
+        else
+        {
+            throw new \Exception("Пароли не совпадают");
+        }
+    }
+
+    public function LogoutUserService(LogoutUserDTO $context)
+    {
+        return $this->repository->Logout($context);
+
     }
 }

@@ -24,4 +24,9 @@ Route::prefix('user')->group(function () {
     Route::get('show/by/id/{user_id}', [UserRequestController::class, 'showById']);
     Route::get('show/by/email/{user_email}', [UserRequestController::class, 'showByEmail']);
     Route::post('reset/to/password', [UserRequestController::class, 'resetToPassword']);
+    Route::post('auth', [UserRequestController::class, 'auth']);
+    // Запросы с персональным токеном
+    Route::middleware('auth:sanctum')->group(function (){
+        Route::get('logout/{user_id}', [UserRequestController::class, 'logout']);
+    });
 });

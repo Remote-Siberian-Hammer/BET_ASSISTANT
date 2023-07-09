@@ -4,6 +4,8 @@ namespace App\Repository;
 use App\DTO\User\CreateUserDTO;
 use App\DTO\User\SearchUserByIdDTO;
 use App\Domain\IRepository\IUserRepository;
+use App\DTO\User\AuthUserDTO;
+use App\DTO\User\LogoutUserDTO;
 use App\DTO\User\SearchUserByEmailDTO;
 use App\DTO\User\ResetToPasswordUserDTO;
 use App\Models\User;
@@ -44,5 +46,19 @@ final class UserRepository implements IUserRepository
         $user->Password = Hash::make($newPassword);
         $user->save();
         return $user;
+    }
+
+    public static function Auth(AuthUserDTO $context)
+    {
+        return User::createBearerTocken(
+            User::where('Email', $context->Email)->first()
+        );
+    }
+
+    public static function Logout(LogoutUserDTO $context)
+    {
+        return User::deleteBearerTocken(
+            User::find($context->Id)
+        );
     }
 }
