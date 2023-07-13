@@ -13,6 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Рендер главной страницы
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'get'])
+    ->name('home');
+
+// Рендер страницы регистрации
+Route::get('/registration', [\App\Http\Controllers\RegistrationViewController::class, 'get'])
+    ->name('user.registration');
+Route::post('/post/registration', [\App\Http\Controllers\RegistrationViewController::class, 'post'])
+    ->name('user.post.registration');
+
+// Рендер страницы входа
+Route::get('/login', [\App\Http\Controllers\LoginViewController::class, 'get'])
+    ->name('user.login');
+Route::get('/post/login', [\App\Http\Controllers\LoginViewController::class, 'post'])
+    ->name('user.post.login');
+
