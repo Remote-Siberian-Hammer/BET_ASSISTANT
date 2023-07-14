@@ -171,6 +171,8 @@ return [
         // BET ASSISTANT Service Provider
         App\Providers\UserServiceProvider::class,
         App\Providers\EmailServiceProvider::class,
+        App\Providers\ValidationServiceProvider::class,
+        App\Providers\RulesValidationServiceProvider::class,
     ])->toArray(),
 
     /*
