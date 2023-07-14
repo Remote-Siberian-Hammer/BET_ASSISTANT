@@ -25,11 +25,15 @@ Route::post('/post/registration', [\App\Http\Controllers\RegistrationViewControl
     ->name('user.post.registration');
 
 // Рендер страницы входа
-Route::get('/login', [\App\Http\Controllers\LoginViewController::class, 'get'])
+Route::get('/login', [\App\Http\Controllers\AuthViewController::class, 'auth_get'])
     ->name('user.login');
-Route::post('/post/login', [\App\Http\Controllers\LoginViewController::class, 'post'])
+Route::post('/post/login', [\App\Http\Controllers\AuthViewController::class, 'auth_post'])
     ->name('user.post.login');
 
 // Маршрут запроса на смену пароля
 Route::post('/reset/to/password', [\App\Http\Controllers\ResetToPasswordController::class, 'post'])
     ->name('user.reset.to.password');
+
+// Маршрут запроса на смену пароля
+Route::get('/login/{user_id}', [\App\Http\Controllers\AuthViewController::class, 'logout_get'])
+    ->name('user.logout');

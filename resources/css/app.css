@@ -18,16 +18,29 @@ a{
 a:hover{
     color: #132B68;
 }
+svg{
+    width: 1.2em;
+}
 .bg-base{
     background-color: #132B68;
 }
 .btn{
-    background-color: #E01E1E!important;
     color: #fff!important;
     font-weight: 700;
+    padding: 0.3em 0.8em;
+}
+.btn{
+    background-color: #E01E1E!important;
 }
 .btn:hover{
     background-color: #c31616!important;
+}
+.btn-user_button{
+    background-color: #344D8E!important;
+    font-weight: 400;
+}
+.btn-user_button:hover{
+    background-color: #304d98!important;
 }
 .w-15p{
     width: 15%;
@@ -106,4 +119,16 @@ section.fixed{
     position: fixed;
     top: 12em;
     right: 24em;
+}
+.offcanvas-ba{
+    top: 10.4em!important;
+    bottom: auto;
+    right: 34.5%;
+    transition: transform -0.7s ease-in-out;
+}
+svg.bank {
+    width: 1.2em;
+}
+.underline{
+    text-decoration: underline;
 }
