@@ -2,13 +2,12 @@
 namespace App\Domain\Service;
 
 
-/**
- * Правила и сообщения валидации для 
- * создания профиля в системе.
- */
 class RulesValidationService
 {
-
+    /**
+     * Правила и сообщения валидации для 
+     * создания профиля в системе.
+    */
     public const REGISTRATION_VALIDATOR = [
         "FirstName" => "required|min:2|max:30",
         "LastName" => "required|min:2|max:30",
@@ -36,5 +35,44 @@ class RulesValidationService
         "Email.max" => "E-mail не должен быть больше :max символов",
         "Password.max" => "Пароль не должен быть больше :max символов",
         "Password1.max" => "Пароль не должен быть больше :max символов"
+    ];
+
+    /**
+     * Правила и сообщения валидации для 
+     * смены пароля профиля.
+    */
+    public const RESET_TO_PASSWORD_VALIDATOR = [
+        "Email" => "required|min:8|max:30",
+        
+    ];
+    
+    public const RESET_TO_PASSWORD_ERROR_MESSAGE = [
+        // REQUIRED
+        "Email.required" => "Укажите адрес электронной почты",
+        // MIN
+        "Email.min" => "E-mail не должен быть меньше :min символов",
+        // MAX
+        "Email.max" => "E-mail не должен быть больше :max символов",
+    ];
+
+    /**
+     * Правила и сообщения валидации для 
+     * смены пароля профиля.
+    */
+    public const AUTH_VALIDATOR = [
+        "Email" => "required|min:8|max:30",
+        "Password" => "required|min:8|max:30",
+    ];
+    
+    public const AUTH_ERROR_MESSAGE = [
+        // REQUIRED
+        "Email.required" => "Укажите адрес электронной почты",
+        "Email.required" => "Укажите адрес электронной почты",
+        // MIN
+        "Email.min" => "E-mail не должен быть меньше :min символов",
+        "Password.min" => "Пароль не должен быть меньше :min символов",
+        // MAX
+        "Email.max" => "E-mail не должен быть больше :max символов",
+        "Password.max" => "Пароль не должен быть больше :max символов",
     ];
 }

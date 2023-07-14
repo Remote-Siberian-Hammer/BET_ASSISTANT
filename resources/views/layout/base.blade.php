@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     @vite(['resources/css/app.css'])
-    <title>Hello, world!</title>
+    <title>BET ASSISTANT</title>
   </head>
   <body>
     <section class="fixed w-100">
@@ -55,12 +55,13 @@
           </div>
           <div class="modal-body">
             <br>
-            <form action="#" method="post" class="col-8 mx-auto">
+            <form action="{{ route('user.reset.to.password') }}" method="post" class="col-8 mx-auto">
+              @csrf
               <div class="mb-4">
                 <label for="exampleInputEmail" class="form-label">
                   <strong>Введите E-mail</strong>
                 </label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
+                <input type="email" name="Email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp">
               </div>
               <div class="mb-5">
                 <button class="btn right" type="submit">Восстановить</button>

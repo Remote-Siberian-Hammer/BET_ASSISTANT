@@ -2,32 +2,6 @@
 
 @section('content')
     <section id="app">
-        {{-- Success --}}
-            @if (\Session::has('success'))
-                <div class="toast mt-2 d-block" id="seToastError" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <strong class="me-auto">Успех</strong>
-                        <button type="button" id="seToastButtonClose" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body text-white bg-success">
-                        {!! \Session::get('success') !!}
-                    </div>
-                </div>
-            @endif
-        {{-- END --}}
-        {{-- Error --}}
-            @if (\Session::has('error'))
-                <div class="toast mt-2 d-block" id="seToastError" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <strong class="me-auto">Ошибка</strong>
-                        <button type="button" id="seToastButtonClose" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body text-white bg-danger">
-                        {!! \Session::get('error') !!}
-                    </div>
-                </div>
-            @endif
-        {{-- END --}}
         <div class="col-12">
             <div class="card card-br p-3 col-10 mx-auto">
                 <div class="mt-3 mb-4">

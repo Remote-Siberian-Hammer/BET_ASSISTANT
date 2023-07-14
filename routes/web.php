@@ -27,6 +27,9 @@ Route::post('/post/registration', [\App\Http\Controllers\RegistrationViewControl
 // Рендер страницы входа
 Route::get('/login', [\App\Http\Controllers\LoginViewController::class, 'get'])
     ->name('user.login');
-Route::get('/post/login', [\App\Http\Controllers\LoginViewController::class, 'post'])
+Route::post('/post/login', [\App\Http\Controllers\LoginViewController::class, 'post'])
     ->name('user.post.login');
 
+// Маршрут запроса на смену пароля
+Route::post('/reset/to/password', [\App\Http\Controllers\ResetToPasswordController::class, 'post'])
+    ->name('user.reset.to.password');
