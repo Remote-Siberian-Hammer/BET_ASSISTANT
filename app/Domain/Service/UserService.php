@@ -17,6 +17,10 @@ use ErrorException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+use App\Mail\ResetToPasswordUserMail;
+use Illuminate\Support\Facades\Mail;
+
+
 class UserService implements IUserService
 {
     /**

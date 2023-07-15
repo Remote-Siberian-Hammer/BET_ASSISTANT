@@ -64,36 +64,38 @@
     </section>
 
     {{-- Окно для меню --}}
-    <div class="offcanvas offcanvas-right offcanvas-ba col-3 card p-2" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-      <div class="offcanvas-header mt-3">
-        <div class="row w-100">
-          <div class="col-lg-8">
-            <strong>{!! session()->get('FirstName') !!} {!! session()->get('LastName') !!}</strong>
-            <small class="underline">{!! session()->get('Email') !!}</small>
+    @if(session()->get('access_key') && session()->get('user_id'))
+      <div class="offcanvas offcanvas-right offcanvas-ba col-3 card p-2" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header mt-3">
+          <div class="row w-100">
+            <div class="col-lg-8">
+              <strong>{!! session()->get('FirstName') !!} {!! session()->get('LastName') !!}</strong>
+              <small class="underline">{!! session()->get('Email') !!}</small>
+            </div>
+            <div class="col-lg-4">
+              <p>Ваш баланс:</p>
+              <h5>
+                <b>200</b>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bank" style="fill: rgba(0, 0, 0, 1); width: 1.5em; position: relative;">
+                  <path d="M20 4H4c-1.103 0-2 .897-2 2v2h20V6c0-1.103-.897-2-2-2zM2 18c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-6H2v6zm3-3h6v2H5v-2z"></path>
+                </svg>
+              </h5> 
+              <a 
+                href="#"
+                class="btn btn-user_button"
+              >Пополнить</a>
+            </div>
           </div>
-          <div class="col-lg-4">
-            <p>Ваш баланс:</p>
-            <h5>
-              <b>200</b>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="bank" style="fill: rgba(0, 0, 0, 1); width: 1.5em; position: relative;">
-                <path d="M20 4H4c-1.103 0-2 .897-2 2v2h20V6c0-1.103-.897-2-2-2zM2 18c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-6H2v6zm3-3h6v2H5v-2z"></path>
-              </svg>
-            </h5> 
-            <a 
-              href="#"
-              class="btn btn-user_button"
-            >Пополнить</a>
+        </div>
+        <div class="offcanvas-body">
+          <div class="list-group">
+            <a href="#" class="btn btn-user_button mt-1 w-90 mx-auto text-center">Мои лиги</a>
+            <a href="#" class="btn btn-user_button mt-1 w-90 mx-auto text-center">Настройки</a>
+            <a href="{{ route('user.logout', ['user_id' => session()->get('user_id')]) }}" class="btn mt-1 w-90 mx-auto text-center">Выход</a>
           </div>
         </div>
       </div>
-      <div class="offcanvas-body">
-        <div class="list-group">
-          <a href="#" class="btn btn-user_button mt-1 w-90 mx-auto text-center">Мои лиги</a>
-          <a href="#" class="btn btn-user_button mt-1 w-90 mx-auto text-center">Настройки</a>
-          <a href="{{ route('user.logout', ['user_id' => session()->get('user_id')]) }}" class="btn mt-1 w-90 mx-auto text-center">Выход</a>
-        </div>
-      </div>
-    </div>
+    @endif
     {{-- END --}}
 
     {{-- Модальные окна --}}
