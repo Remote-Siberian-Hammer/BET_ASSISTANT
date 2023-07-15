@@ -19,19 +19,13 @@ use Illuminate\Database\QueryException;
 
 class UserRequestController extends Controller
 {
-    protected UserService $service;
-    public function __construct()
-    {
-        $this->service = new UserService();
-    }
-
     /**
      * Create a newly created resource in storage.
     */
     public function create(Request $request, UserService $service)
     {
         $user =  $service->ShowUserByEmailService(SearchUserByEmailDTO::AutoMap($request->Email));
-        if ($user)
+        if (count($user) > 0)
         {
             throw new \ErrorException('Такой пользователь существует!');
         }

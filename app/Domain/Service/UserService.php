@@ -17,6 +17,10 @@ use ErrorException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+use App\Mail\ResetToPasswordUserMail;
+use Illuminate\Support\Facades\Mail;
+
+
 class UserService implements IUserService
 {
     /**
@@ -72,7 +76,10 @@ class UserService implements IUserService
         $user = $this->repository->ShowUserByEmail($emailContext);
         if (Hash::check($context->Password, json_decode($user[0], true)["Password"]))
         {
-            return ["bearer_token" => $this->repository->Auth($context)];
+            return [
+                "user" => json_decode($user[0], true),
+                "bearer_token" => $this->repository->Auth($context)
+            ];
         }
         else
         {
@@ -83,6 +90,5 @@ class UserService implements IUserService
     public function LogoutUserService(LogoutUserDTO $context)
     {
         return $this->repository->Logout($context);
-
     }
 }
