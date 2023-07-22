@@ -19,10 +19,12 @@ return new class extends Migration
                 ->nullable(false);
             $table->string('Email')
                 ->nullable(true)
+                ->unique()
                 ->default(null);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('Phone')
                 ->nullable(true)
+                ->unique()
                 ->default(null);
             $table->string('Password');
             $table->timestamps();

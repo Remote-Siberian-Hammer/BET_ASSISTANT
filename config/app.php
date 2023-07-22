@@ -173,6 +173,7 @@ return [
         App\Providers\EmailServiceProvider::class,
         App\Providers\ValidationServiceProvider::class,
         App\Providers\RulesValidationServiceProvider::class,
+        App\Providers\LanguageServiceProvider::class,
     ])->toArray(),
 
     /*

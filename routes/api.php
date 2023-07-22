@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 // Using Controller's
 use App\Http\Controllers\Api\UserRequestController;
+use App\Http\Controllers\Api\LanguageController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,5 +29,21 @@ Route::prefix('user')->group(function () {
     // Запросы с персональным токеном
     Route::middleware('auth:sanctum')->group(function (){
         Route::get('logout/{user_id}', [UserRequestController::class, 'logout']);
+    });
+});
+
+Route::prefix('lang')->group(function () {
+    Route::get('all/', [LanguageController::class, 'all']);
+    Route::get('show/{language_id}', [LanguageController::class, 'show']);
+    // Запросы с персональным токеном
+    Route::middleware('auth:sanctum')->group(function (){
+        Route::post('create', [LanguageController::class, 'create']);
+        Route::get('delete/{language_id}', [LanguageController::class, 'delete']);
+    });
+    // Запросы для создания пользовательских сессий
+    Route::prefix('session')->group(function () {
+        Route::post('create', [LanguageController::class, 'sessionCreate']);
+        Route::get('show/{user_id}', [LanguageController::class, 'sessionShow']);
+        Route::post('update', [LanguageController::class, 'sessionUpdate']);
     });
 });
