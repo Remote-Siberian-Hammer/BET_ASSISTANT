@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // Using Controller's
 use App\Http\Controllers\Api\UserRequestController;
 use App\Http\Controllers\Api\LanguageController;
+use App\Http\Controllers\Api\AccountRapidController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,5 +46,14 @@ Route::prefix('lang')->group(function () {
         Route::post('create', [LanguageController::class, 'sessionCreate']);
         Route::get('show/{user_id}', [LanguageController::class, 'sessionShow']);
         Route::post('update', [LanguageController::class, 'sessionUpdate']);
+    });
+});
+
+Route::prefix('account')->group(function () {
+    Route::prefix('rapid')->group(function () {
+        Route::post('create', [AccountRapidController::class, 'create']);
+        Route::get('show/{account_rapid_id}', [AccountRapidController::class, 'show']);
+        Route::get('delete/{account_rapid_id}', [AccountRapidController::class, 'delete']);
+        Route::get('all', [AccountRapidController::class, 'all']);
     });
 });

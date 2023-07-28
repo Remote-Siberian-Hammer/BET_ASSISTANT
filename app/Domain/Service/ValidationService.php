@@ -39,4 +39,13 @@ class ValidationService implements IValidationService
             $this->rule::AUTH_ERROR_MESSAGE
         );
     }
+
+    public function AccountRapidValidationService(Request $request)
+    {
+        // Должен быть RegistrationRulesService
+        return $request->validate(
+            $this->rule::ACCOUNT_RAPID_VALIDATOR,
+            $this->rule::ACCOUNT_RAPID_ERROR_MESSAGE
+        );
+    }
 }

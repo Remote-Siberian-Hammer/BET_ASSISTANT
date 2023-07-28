@@ -8,4 +8,5 @@ interface IValidationService
 {
     public function CreateUserValidationService(Request $request);
     public function ResetToPasswordUserValidationService(Request $request);
+    public function AccountRapidValidationService(Request $request);
 }

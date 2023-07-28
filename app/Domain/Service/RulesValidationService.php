@@ -67,12 +67,26 @@ class RulesValidationService
     public const AUTH_ERROR_MESSAGE = [
         // REQUIRED
         "Email.required" => "Укажите адрес электронной почты",
-        "Email.required" => "Укажите адрес электронной почты",
         // MIN
         "Email.min" => "E-mail не должен быть меньше :min символов",
         "Password.min" => "Пароль не должен быть меньше :min символов",
         // MAX
         "Email.max" => "E-mail не должен быть больше :max символов",
         "Password.max" => "Пароль не должен быть больше :max символов",
+    ];
+
+    /**
+     * Правила и сообщения валидации для 
+     * смены пароля профиля.
+    */
+    public const ACCOUNT_RAPID_VALIDATOR = [
+        "Email" => "required|min:6|max:30",
+    ];
+
+    public const ACCOUNT_RAPID_ERROR_MESSAGE = [
+        // REQUIRED
+        "Email.required" => "Укажите адрес электронной почты",
+        // MIN
+        "Email.min" => "E-mail не должен быть меньше :min символов",
     ];
 }

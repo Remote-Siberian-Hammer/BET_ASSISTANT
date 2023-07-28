@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->integer('SportId')
-                ->unique()
                 ->nullable();
             $table->string('NameRu')
                 ->nullable();
