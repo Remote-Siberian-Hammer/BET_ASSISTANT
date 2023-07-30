@@ -16,16 +16,20 @@ return new class extends Migration
             $table->integer('SportId')
                 ->nullable();
             $table->string('NameRu')
+                ->unique()
                 ->nullable();
             $table->string('NameEn')
+                ->unique()
                 ->nullable();
             $table->string('NameDe')
+                ->unique()
                 ->nullable();
             $table->string('NameFr')
+                ->unique()
                 ->nullable();
             $table->string('Slug')
+                ->unique()
                 ->nullable();
-            $table->timestamps();
             $table->foreign('SportId')
                 ->references('id')
                 ->on('sports')

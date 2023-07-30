@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('people_players', function (Blueprint $table) {
             $table->id();
             $table->integer('SportId');
-            $table->integer('SectionId');
-            $table->integer('CountryLeaguesId');
             $table->integer('TeamId');
             $table->string('LastName');
             $table->string('FirstName');
@@ -23,18 +21,9 @@ return new class extends Migration
                 ->nullable();
             $table->string('Slug')
                 ->unique();
-            $table->timestamps();
             $table->foreign('SportId')
                 ->references('id')
                 ->on('sports')
-                ->onDelete('cascade');
-            $table->foreign('SectionId')
-                ->references('id')
-                ->on('sections')
-                ->onDelete('cascade');
-            $table->foreign('CountryLeaguesId')
-                ->references('id')
-                ->on('country_leagues')
                 ->onDelete('cascade');
             $table->foreign('TeamId')
                 ->references('id')

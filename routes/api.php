@@ -48,12 +48,14 @@ Route::prefix('lang')->group(function () {
         Route::post('update', [LanguageController::class, 'sessionUpdate']);
     });
 });
-
-Route::prefix('account')->group(function () {
-    Route::prefix('rapid')->group(function () {
-        Route::post('create', [AccountRapidController::class, 'create']);
-        Route::get('show/{account_rapid_id}', [AccountRapidController::class, 'show']);
-        Route::get('delete/{account_rapid_id}', [AccountRapidController::class, 'delete']);
-        Route::get('all', [AccountRapidController::class, 'all']);
+// Запросы с персональным токеном
+Route::middleware('auth:sanctum')->group(function (){
+    Route::prefix('account')->group(function () {
+        Route::prefix('rapid')->group(function () {
+            Route::post('create', [AccountRapidController::class, 'create']);
+            Route::get('show/{account_rapid_id}', [AccountRapidController::class, 'show']);
+            Route::get('delete/{account_rapid_id}', [AccountRapidController::class, 'delete']);
+            Route::get('all', [AccountRapidController::class, 'all']);
+        });
     });
 });

@@ -14,14 +14,13 @@ return new class extends Migration
         Schema::create('sports', function (Blueprint $table) {
             $table->id();
             $table->string('NameRu')
-		  ->unique();
-	    $table->string('NameEn')
-		->unique();
-	    $table->string('NameDe')
-	   	->unique();
-	    $table->string('NameFr')
                 ->unique();
-            $table->timestamps();
+	        $table->string('NameEn')
+                ->unique();
+	        $table->string('NameDe')
+                ->unique();
+	        $table->string('NameFr')
+                ->unique();
         });
     }
 
