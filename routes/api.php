@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserRequestController;
 use App\Http\Controllers\Api\LanguageController;
 use App\Http\Controllers\Api\AccountRapidController;
+use App\Http\Controllers\Api\JobController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -59,3 +61,5 @@ Route::middleware('auth:sanctum')->group(function (){
         });
     });
 });
+
+Route::get('job/start', [JobController::class, 'index']);

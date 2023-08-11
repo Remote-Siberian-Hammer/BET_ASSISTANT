@@ -174,6 +174,7 @@ return [
         App\Providers\ValidationServiceProvider::class,
         App\Providers\RulesValidationServiceProvider::class,
         App\Providers\LanguageServiceProvider::class,
+        App\Providers\LeagueListApiServiceProvider::class,
     ])->toArray(),
 
     /*
