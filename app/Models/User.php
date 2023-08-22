@@ -18,11 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'FirstName',
-        'LastName',
-        'Email',
-        'Phone',
-        'Password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -44,15 +42,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    static function createBearerTocken($user)
-    {
-        $user->tokens()->delete();
-        return $user->createToken('user_token')->plainTextToken;
-    }
-
-    static function deleteBearerTocken($user)
-    {
-        return $user->tokens()->delete();
-    }
 }

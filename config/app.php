@@ -168,13 +168,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        // BET ASSISTANT Service Provider
-        App\Providers\UserServiceProvider::class,
-        App\Providers\EmailServiceProvider::class,
-        App\Providers\ValidationServiceProvider::class,
-        App\Providers\RulesValidationServiceProvider::class,
-        App\Providers\LanguageServiceProvider::class,
-        App\Providers\LeagueListApiServiceProvider::class,
     ])->toArray(),
 
     /*
