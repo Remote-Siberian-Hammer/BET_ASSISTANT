@@ -43,17 +43,81 @@
                                 class="btn">Войти</a>
                         @endguest
                         @auth
-                            <form action="{{ route("logout.post") }}" method="post">
-                                @csrf
-                                <button type="submit" 
-                                    class="btn">Выход</button>
-                            </form>
+                            <button type="button" 
+                                class="btn btn-menu control">
+                                <div class="row">
+                                    <div class="col">
+                                        <svg xmlns="http://www.w3.org/2000/svg" 
+                                            width="24" 
+                                            height="24" 
+                                            viewBox="0 0 24 24" 
+                                            style="fill: #f6f6f6;">
+                                            <path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
+                                        </svg>
+                                    </div>
+                                    @if (Auth::user()->first_name && Auth::user()->last_name)
+                                    <div class="col">{{ Auth::user()->last_name }} {{ Auth::user()->first_name }}</div>
+                                    @else
+                                    <div class="col">Меню</div>
+                                    @endif
+                                </div>
+                            </button>
                         @endauth
                     </div>
                 </div>
             </nav>
-            </header>
-    
+        </header>
+
+        @auth
+            <section class="menu card p-2">
+                <div class="row mt-3 mb-3">
+                    <div class="col-7">
+                        @if (Auth::user()->first_name && Auth::user()->last_name)
+                            <h3>{{ Auth::user()->last_name }} {{ Auth::user()->first_name }}</h3>
+                        @endif
+                        <small>
+                            <a href="#">{{ Auth::user()->email }}</a>
+                        </small>
+                    </div>
+                    <div class="col-5">
+                        <p>
+                            <b>Ваш баланс:</b>
+                            <div class="d-flex justify-content-center mb-4">
+                                <b>
+                                    200 <svg xmlns="http://www.w3.org/2000/svg" 
+                                            width="24" 
+                                            height="24" 
+                                            viewBox="0 0 24 24" 
+                                            style="fill: rgba(0, 0, 0, 1);">
+                                            <path d="M20 4H4c-1.103 0-2 .897-2 2v2h20V6c0-1.103-.897-2-2-2zM2 18c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-6H2v6zm3-3h6v2H5v-2z"></path>
+                                        </svg>
+                                </b>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn btn-menu">Пополнить</a>
+                            </div>
+                            
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container mb-3">
+                        <a href="#" class="btn w-75 mx-auto d-block btn-menu">Мои лиги</a>
+                    </div>
+                    <div class="container mb-3">
+                        <a href="#" class="btn w-75 mx-auto d-block btn-menu">Настройки</a>
+                    </div>
+                    <div class="container mb-3">
+                        <form action="{{ route("logout.post") }}" method="post">
+                            @csrf
+                            <button type="submit" 
+                                class="btn w-75 mx-auto d-block">Выход</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        @endauth
+
         <main class="d-flex justify-content-between mt-5">
             <section id="advertising" 
                 class="col-1 advertising-v d-flex align-items-center justify-content-center">РЕКЛАМА</section>
@@ -92,11 +156,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <script>
-        document.getElementById('seToastButtonClose').onclick = function ()
-        {
-            return document.getElementById('Toast').style.display = "none";
-        }
-    </script>
+    @vite(['resources/js/main.js'])
   </body>
 </html>

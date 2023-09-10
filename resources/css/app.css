@@ -82,3 +82,39 @@ header nav a.navbar-brand:hover {
     background-color: #F8F8F8;
     box-shadow: -8px 8px 11px -4px rgba(0, 0, 0, 0.08);
 }
+.btn-menu{
+    position: relative;
+    /* left: -30%; */
+    background-color: #344D8E!important;
+    border-color: #344D8E!important;
+}
+.btn-menu::hover{
+    background-color: #324e96!important;
+    border-color: #324e96!important;
+}
+.menu{
+    display: none;
+    position: absolute;
+    width: 25%;
+    right: 9em;
+}
+.card-bg{
+    background-color: #132B68;
+}
+.w-24{
+    width: 24%;
+}
+.ml-1{
+    margin-left: 1%;
+}
+.mr-1{
+    margin-right: 1%;
+}
+.wrapp{
+    display: block;
+}
+.wrapp svg{
+    position: absolute;
+    right: 2.3%;
+    top: 33%;
+}
