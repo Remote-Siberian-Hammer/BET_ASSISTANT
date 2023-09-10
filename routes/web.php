@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('post')->group(function () {
+    Route::post("/registration", [\App\Http\Controllers\PostUserController::class, 'createUser'])
+        ->name("registration.post");
+    Route::post("/registration", [\App\Http\Controllers\PostUserController::class, 'authUser'])
+        ->name("authorization.post");
+    Route::post("/logout", [\App\Http\Controllers\PostUserController::class, 'logoutUser'])
+        ->name("logout.post");
 });
+
+Route::get("/", [\App\Http\Controllers\Client\HomeController::class, 'getHome'])
+    ->name("index.page");
+Route::get("/auth", [\App\Http\Controllers\Client\UserController::class, 'getAuthorization'])
+    ->name("auth.page");
+Route::get("/registration", [\App\Http\Controllers\Client\UserController::class, 'getRegistration'])
+    ->name("registration.page");

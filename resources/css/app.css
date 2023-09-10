@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header nav{
+    background: #132B68 !important;
+}
+header nav,
+header nav a{
+    color: #f6f6f6;
+}
+
+#app{
+
+}
+#content{
+
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+span,
+a,
+b,
+strong {
+    color: #000000;
+}
+a{
+    cursor: pointer;
+}
+a.line-active{
+    text-decoration:line-through;
+}
+#advertising {
+    background-color: #B9C7EC;
+    color: #fff;
+}
+.advertising-h {
+    height: 6em;
+}
+.advertising-v {
+    height: 40em;
+}
+.btn {
+    background-color: #E01E1E;
+    color: #f6f6f6 !important;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-color: #E01E1E;
+}
+.btn:hover {
+    background-color: #E01E1E;
+    border-color: #E01E1E;
+}
+header nav a.navbar-brand {
+    height: 2em;
+    display: flex;
+    justify-content: center;
+}
+header nav a.navbar-brand strong {
+    color: #f6f6f6 !important;
+    position: relative;
+    left: 5%;
+}
+header nav a.navbar-brand:hover {
+    color: #f6f6f6!important;
+}
+.logo {
+    background-color: #E01E1E;
+    width: 1.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16% 0%;
+}
+
+.card {
+    border: none;
+    background-color: #F8F8F8;
+    box-shadow: -8px 8px 11px -4px rgba(0, 0, 0, 0.08);
+}
