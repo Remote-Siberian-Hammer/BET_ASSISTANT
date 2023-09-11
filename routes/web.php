@@ -28,3 +28,31 @@ Route::get("/auth", [\App\Http\Controllers\Client\UserController::class, 'getAut
     ->name("auth.page");
 Route::get("/registration", [\App\Http\Controllers\Client\UserController::class, 'getRegistration'])
     ->name("registration.page");
+
+Route::prefix('admin')->group(function () {
+    Route::get("home", [\App\Http\Controllers\Admin\HomeAdminController::class, 'home'])
+        ->name("admin.home.page");
+
+    Route::prefix('rapid')->group(function () {
+        Route::get("/", [\App\Http\Controllers\Admin\RapidAccountsController::class, 'rapid_parser'])
+            ->name("admin.rapid_parser.page");
+            
+        Route::prefix('account')->group(function () {
+            Route::get("/list", [\App\Http\Controllers\Admin\RapidAccountsController::class, 'rapid_account_list'])
+                ->name("admin.rapid_account_list.page");
+            Route::get("/create", [\App\Http\Controllers\Admin\RapidAccountsController::class, 'rapid_account_create'])
+                ->name("admin.rapid_account_create.page");
+            Route::get("/show/{rapid_account_id}", [\App\Http\Controllers\Admin\RapidAccountsController::class, 'rapid_account_show'])
+                ->name("admin.rapid_account_show.page");
+            
+                Route::prefix('post')->group(function () {
+                    Route::post("/create", [\App\Http\Controllers\Admin\PostRapidAccountsController::class, 'create'])
+                        ->name("admin.rapid_account.create");
+                    Route::post("/delete", [\App\Http\Controllers\Admin\PostRapidAccountsController::class, 'update'])
+                        ->name("admin.rapid_account.update");
+                    Route::post("/delete", [\App\Http\Controllers\Admin\PostRapidAccountsController::class, 'delete'])
+                        ->name("admin.rapid_account.delete");
+                });
+        });
+    });
+});

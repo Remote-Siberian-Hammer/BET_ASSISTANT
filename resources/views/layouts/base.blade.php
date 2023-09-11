@@ -101,6 +101,11 @@
                     </div>
                 </div>
                 <div class="row">
+                    @if(Auth::user()->role == "Администратор")
+                        <div class="container mb-3">
+                            <a href="{{ route("admin.home.page") }}" class="btn w-75 mx-auto d-block btn-menu">Панель администратора</a>
+                        </div>
+                    @endif
                     <div class="container mb-3">
                         <a href="#" class="btn w-75 mx-auto d-block btn-menu">Мои лиги</a>
                     </div>

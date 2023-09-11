@@ -17,6 +17,11 @@ class RapidUserRepository implements IRapidUserRepository
         return RapidProfileEntity::where('id', $rapid_user_id)->first();
     }
 
+    public function all()
+    {
+        return RapidProfileEntity::get();
+    }
+
 	public function delete(int $rapid_user_id)
     {
         $rapidProfile = RapidProfileEntity::where('id', $rapid_user_id);

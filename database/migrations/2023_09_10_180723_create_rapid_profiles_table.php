@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('facts_count');
             $table->integer('count');
             $table->dateTime('activation_facts');
+            $table->timestamps();
         });
     }
 

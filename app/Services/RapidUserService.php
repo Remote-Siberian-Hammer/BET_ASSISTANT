@@ -27,6 +27,11 @@ class RapidUserService implements IRapidUserService
         );
     }
 
+    public function allAction()
+    {
+        return $this->repository->all();
+    }
+
     public function showAction(ShowRapidUserDTO $context)
     {
         return $this->repository->show(

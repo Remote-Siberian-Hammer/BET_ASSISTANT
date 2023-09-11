@@ -16,7 +16,9 @@ header nav a{
 #content{
 
 }
-
+label b{
+    color: #E01E1E;
+}
 h1,
 h2,
 h3,
@@ -97,6 +99,7 @@ header nav a.navbar-brand:hover {
     position: absolute;
     width: 25%;
     right: 9em;
+    z-index: 9999;
 }
 .card-bg{
     background-color: #132B68;
@@ -117,4 +120,16 @@ header nav a.navbar-brand:hover {
     position: absolute;
     right: 2.3%;
     top: 33%;
+}
+.card-bg h1,
+.card-bg h2,
+.card-bg h3,
+.card-bg a,
+.card-bg small,
+.card-bg label,
+.card-bg p,
+.card-bg table,
+.card-bg table th,
+.card-bg table tr td{
+    color: #f6f6f6!important;
 }

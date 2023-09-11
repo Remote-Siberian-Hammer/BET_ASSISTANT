@@ -1,7 +1,6 @@
 <?php
-
-
 namespace App\Core\DTO\RapidUser;
+
 class CreateRapidUserDTO
 {
 	public string $type;
@@ -9,10 +8,10 @@ class CreateRapidUserDTO
 	public string $access_key;
 	public int $facts_count;
 	public int $count;
-	public int $activation_facts;
+	public string $activation_facts;
 
     public function __construct(string $type, string $host, string $access_key, int $facts_count,
-                                int $count, int $activation_facts)
+                                int $count, string $activation_facts)
     {
         $this->type = $type;
         $this->host = $host;
