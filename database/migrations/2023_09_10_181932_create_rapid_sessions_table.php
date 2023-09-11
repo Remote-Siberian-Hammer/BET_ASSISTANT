@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('language_sessions', function (Blueprint $table) {
+        Schema::create('rapid_sessions', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unique();
-            $table->enum('language', ['Ru', 'En', 'De', 'Fr']);
+            $table->integer('rapid_profile_id');
             $table->timestamps();
-            $table->foreign('user_id')
+            $table->foreign('rapid_profile_id')
                 ->references('id')
-                ->on('users')
+                ->on('rapid_profiles')
                 ->onDelete('cascade');
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('language_sessions');
+        Schema::dropIfExists('rapid_sessions');
     }
 };

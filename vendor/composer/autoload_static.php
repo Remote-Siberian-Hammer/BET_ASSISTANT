@@ -352,8 +352,8 @@ class ComposerStaticInitd20cd0e3361a8d46455ce42e3d095dfe
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -523,9 +523,21 @@ class ComposerStaticInitd20cd0e3361a8d46455ce42e3d095dfe
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\ParseSportScoreConsole' => __DIR__ . '/../..' . '/app/Console/Commands/ParseSportScoreConsole.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Core\\DTO\\User\\AuthUserDTO' => __DIR__ . '/../..' . '/app/Core/DTO/User/AuthUserDTO.php',
+        'App\\Core\\DTO\\User\\CreateUserDTO' => __DIR__ . '/../..' . '/app/Core/DTO/User/CreateUserDTO.php',
+        'App\\Core\\DTO\\User\\FindByEmailDTO' => __DIR__ . '/../..' . '/app/Core/DTO/User/FindByEmailDTO.php',
+        'App\\Core\\Entityes\\AuthUserEntityes' => __DIR__ . '/../..' . '/app/Core/Entityes/AuthUserEntityes.php',
+        'App\\Core\\Entityes\\User' => __DIR__ . '/../..' . '/app/Core/Entityes/User.php',
+        'App\\Core\\Entityes\\UserRoleEntity' => __DIR__ . '/../..' . '/app/Core/Entityes/UserRoleEntity.php',
+        'App\\Core\\IRepository\\IUserRepository' => __DIR__ . '/../..' . '/app/Core/IRepository/IUserRepository.php',
+        'App\\Core\\IServices\\IUserService' => __DIR__ . '/../..' . '/app/Core/IServices/IUserService.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Client\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/HomeController.php',
+        'App\\Http\\Controllers\\Client\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/UserController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\PostUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostUserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -536,12 +548,17 @@ class ComposerStaticInitd20cd0e3361a8d46455ce42e3d095dfe
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\User\\AuthUserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/User/AuthUserRequest.php',
+        'App\\Http\\Requests\\User\\CreateUserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/User/CreateUserRequest.php',
+        'App\\Models\\LanguageSession' => __DIR__ . '/../..' . '/app/Models/LanguageSession.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Repository\\UserRepository' => __DIR__ . '/../..' . '/app/Repository/UserRepository.php',
+        'App\\Services\\UserService' => __DIR__ . '/../..' . '/app/Services/UserService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',
@@ -652,6 +669,7 @@ class ComposerStaticInitd20cd0e3361a8d46455ce42e3d095dfe
         'Cron\\HoursField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
+        'Database\\Factories\\LanguageSessionFactory' => __DIR__ . '/../..' . '/database/factories/LanguageSessionFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
