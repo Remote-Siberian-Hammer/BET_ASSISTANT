@@ -53,6 +53,11 @@ Route::prefix('admin')->group(function () {
                     Route::post("/delete", [\App\Http\Controllers\Admin\PostRapidAccountsController::class, 'delete'])
                         ->name("admin.rapid_account.delete");
                 });
+
+                Route::prefix('parser')->group(function () {
+                    Route::post("/delete", [\App\Http\Controllers\Admin\PostRapidAccountsController::class, 'start'])
+                    ->name("admin.rapid_parser.start");
+                });
         });
     });
 });

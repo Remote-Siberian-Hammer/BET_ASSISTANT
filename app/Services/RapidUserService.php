@@ -53,6 +53,16 @@ class RapidUserService implements IRapidUserService
         );
     }
 
+    public function showSessionAction()
+    {
+        return $this->repository->showSession();
+    }
+
+    public function allSessionAction()
+    {
+        return $this->repository->all();
+    }
+
     public function updateSessionAction(UpdateRapidUserSessionDTO $context)
     {
         $rapid = $this->repository->show(

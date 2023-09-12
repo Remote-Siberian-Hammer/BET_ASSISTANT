@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Console\Parser\ParserObserverService;
 use App\Core\DTO\RapidUser\CreateRapidUserDTO;
 use App\Core\DTO\RapidUser\DeleteRapidUserDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Rapid\CreateRapidAccountRequest;
 use App\Http\Requests\Rapid\DeleteRapidAccountRequest;
-use App\Http\Requests\Rapid\UpdateRapidAccountRequest;
+use App\Jobs\ParserJob;
+use Illuminate\Support\Facades\Queue;
 use App\Services\RapidUserService;
 use DateTime;
 
@@ -17,6 +19,13 @@ class PostRapidAccountsController extends Controller
     public function __construct()
     {
         $this->dateTime = new DateTime();
+    }
+
+    public function start(ParserJob $job)
+    {
+        Queue::push($job);
+        return back()
+            ->with("success", "Парсер успешно запущен!");
     }
 
     public function create(CreateRapidAccountRequest $request, RapidUserService $service)

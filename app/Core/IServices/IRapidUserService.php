@@ -15,5 +15,7 @@ interface IRapidUserService
 	public function deleteAction(DeleteRapidUserDTO $context);
     // Session
     public function createSessionAction(CreateRapidUserSessionDTO $context);
+    public function showSessionAction();
+    public function allSessionAction();
     public function updateSessionAction(UpdateRapidUserSessionDTO $context);
 }

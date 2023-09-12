@@ -34,6 +34,11 @@ class RapidUserRepository implements IRapidUserRepository
         return $rapid_profile_session->save();
     }
 
+    public function showSession()
+    {
+        return RapidProfileSessionEntity::first();
+    }
+
 	public function updateSession(RapidProfileSessionEntity $rapid_profile_session)
     {
         return $rapid_profile_session->save();

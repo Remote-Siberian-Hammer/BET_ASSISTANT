@@ -10,6 +10,7 @@ class RapidAccountsController extends Controller
 {
     public function rapid_parser()
     {
+        
         return view("admin/rapid/index");
     }
 

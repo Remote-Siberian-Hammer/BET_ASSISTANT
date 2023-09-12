@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Parser\ParserObserverService;
+use App\Services\ParserService;
 use Illuminate\Console\Command;
 
 class Parser extends Command
@@ -25,6 +27,6 @@ class Parser extends Command
      */
     public function handle()
     {
-        print 'API парсинг выполнен успешно';
+        
     }
 }
